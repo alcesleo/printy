@@ -27,7 +27,11 @@ In this example I'm using a testfolder with the following structure:
 
 To use `printy.py`, simply:
 
+    # output in terminal
     ./printy.py testfolder
+
+    # or save as a file
+    ./printy.py testfolder > test.md
 
 The ouput will be (within horizontal lines):
 
