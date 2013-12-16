@@ -7,7 +7,7 @@ markdown code-blocks, with filenames as headers.
 
 ## Installation
 
-Requires **python3** and docopt to be installed,
+Requires **python3** and **docopt** to be installed,
 the file is self contained so just drop it somewhere.
 
     pip install docopt
