@@ -51,7 +51,7 @@ The ouput will be (within horizontal lines):
 
 ## Todo
 
-- [] --exclude files/folders
-- [] ignore binary files
-- [] syntax highlighting?
+- [ ] --exclude files/folders
+- [ ] ignore binary files
+- [ ] syntax highlighting?
 
