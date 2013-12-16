@@ -29,7 +29,7 @@ To use `printy.py`, simply:
 
     ./printy.py testfolder
 
-The ouput will be:
+The ouput will be (within horizontal lines):
 
 ---
 
@@ -46,4 +46,12 @@ The ouput will be:
 ## testfolder/subfolder/testfile3.txt
 
     Contents of testfile3.txt
+
+---
+
+## Todo
+
+- [] --exclude files/folders
+- [] ignore binary files
+- [] syntax highlighting?
 
