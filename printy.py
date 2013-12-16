@@ -25,6 +25,9 @@ def printify(directory):
     filename, and all content is indented as markdown code blocks.
     """
 
+    # output header
+    print('# {0}\n'.format(directory))
+
     # recurse the directory
     for root, dirs, files in os.walk(directory):
         for filename in files:
