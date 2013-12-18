@@ -5,6 +5,8 @@ markdown code-blocks, with filenames as headers.
 
 **If you want to print a bunch of code out on paper - this is the tool for you!**
 
+I recommend using [Marked](http://markedapp.com/) to view/print the result.
+
 ## Installation
 
 Requires **python3** and **docopt** to be installed,
