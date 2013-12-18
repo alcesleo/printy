@@ -11,14 +11,11 @@ Usage:
 
 """
 
-import sys, os, mimetypes
+import sys, os
 from textwrap import indent
 from docopt import docopt
 
-# TODO: exclude dir option
-# TODO: limit mimetypes
-
-def printify(directory):
+def printify(directory, excludes=['.git']):
     """
     Prints contents of all files in a directory to stdout in
     simple markdown format. Every file gets a heading with its
@@ -29,7 +26,12 @@ def printify(directory):
     print('# {0}\n'.format(directory))
 
     # recurse the directory
-    for root, dirs, files in os.walk(directory):
+    for root, dirs, files in os.walk(directory, topdown=True):
+
+        # remove excludes
+        dirs[:] = [d for d in dirs if d not in excludes]
+        files = [f for f in files if f not in excludes]
+
         for filename in files:
             path = os.path.join(root, filename)
 
@@ -41,6 +43,6 @@ def printify(directory):
 
 
 if __name__ == '__main__':
-    args = docopt(__doc__)
+    args = docopt(__doc__, version='0.1')
 
     printify(args['<directory>'])
