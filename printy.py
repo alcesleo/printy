@@ -50,8 +50,9 @@ def printify(directory, only_paths=False, excludes=None):
 
     excludes = _regexify_globs(excludes)
 
-    # output header
-    print('# {0}\n'.format(directory))
+    if not only_paths:
+        # output header
+        print('# {0}\n'.format(directory))
 
     # recurse the directory
     for root, dirs, files in os.walk(directory, topdown=True):
