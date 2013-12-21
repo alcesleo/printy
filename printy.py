@@ -9,7 +9,7 @@ Usage:
 Options:
     -h --help           Show this screen.
     --version           Show version.
-    -n --paths          Print only the found paths
+    -n --paths          Print only the found paths.
     --exclude=<glob>    Exclude file or folder, for example --exclude='*.pyc'.
 
 """
@@ -21,7 +21,7 @@ from docopt import docopt
 def _regexify_globs(patterns):
     """Turn a list of glob patterns into a regex."""
     # http://stackoverflow.com/questions/5141437/filtering-os-walk-dirs-and-files
-    return r'|'.join([fnmatch.translate(x) for x in patterns]) # to regex
+    return r'|'.join([fnmatch.translate(x) for x in patterns])
 
 def _print_file(path):
     """Print a file as Markdown."""
@@ -30,7 +30,7 @@ def _print_file(path):
 
     # http://docs.python.org/3.3/library/functions.html#open
     with open(path, 'r', errors='ignore') as f:
-        # todo ignore binary files
+        # TODO: ignore binary files
         text = f.read()
         # indent non-empty lines with 4 spaces
         print(indent(text, '    ', lambda line: True))
