@@ -3,12 +3,14 @@
 """
 Usage:
     printy.py <directory>
+    printy.py <directory> [options]
     printy.py <directory> --exclude=<folder_or_file_pattern>...
 
 Options:
-    -h --help     Show this screen.
-    --version     Show version.
-    --exclude=<glob> Exclude file or folder, for example --exclude='*.pyc'.
+    -h --help           Show this screen.
+    --version           Show version.
+    -n --paths          Print only the found paths
+    --exclude=<glob>    Exclude file or folder, for example --exclude='*.pyc'.
 
 """
 
@@ -21,8 +23,21 @@ def _regexify_globs(patterns):
     # http://stackoverflow.com/questions/5141437/filtering-os-walk-dirs-and-files
     return r'|'.join([fnmatch.translate(x) for x in patterns]) # to regex
 
+def _print_file(path):
+    """Print a file as Markdown."""
+    # print file header
+    print('## {0}\n'.format(path))
 
-def printify(directory, excludes=None):
+    # http://docs.python.org/3.3/library/functions.html#open
+    with open(path, 'r', errors='ignore') as f:
+        # todo ignore binary files
+        text = f.read()
+        # indent non-empty lines with 4 spaces
+        print(indent(text, '    ', lambda line: True))
+
+
+
+def printify(directory, only_paths=False, excludes=None):
     """
     Prints contents of all files in a directory to stdout in
     simple markdown format. Every file gets a heading with its
@@ -49,18 +64,12 @@ def printify(directory, excludes=None):
         for filename in files:
             path = os.path.join(root, filename)
 
-            # print file with header
-            print('## {0}\n'.format(path))
-
-            # http://docs.python.org/3.3/library/functions.html#open
-            with open(path, 'r', errors='ignore') as f:
-                # todo ignore binary files
-                text = f.read()
-                # indent non-empty lines with 4 spaces
-                print(indent(text, '    ', lambda line: True))
+            if only_paths:
+                print(path)
+            else:
+                _print_file(path)
 
 
 if __name__ == '__main__':
     args = docopt(__doc__, version='0.1')
-
-    printify(args['<directory>'], args['--exclude'])
+    printify(args['<directory>'], args['--paths'], args['--exclude'])
