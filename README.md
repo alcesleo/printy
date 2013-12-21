@@ -62,6 +62,10 @@ The ouput will be (within horizontal lines):
 
 ---
 
+## License
+
+**WTFPL**
+
 ## Todo
 
 - ignore binary files
