@@ -35,6 +35,13 @@ To use `printy.py`, simply:
     # or save as a file
     ./printy.py testfolder > test.md
 
+    # print only paths (useful for testing if your ignore patterns are working)
+    ./printy.py testfolder -n
+
+    # ignore files and folders
+    # you can use the --exclude option multiple times
+    ./printy.py --exclude="*.py"
+
 The ouput will be (within horizontal lines):
 
 ---
@@ -57,7 +64,4 @@ The ouput will be (within horizontal lines):
 
 ## Todo
 
-- `--exclude` files/folders
 - ignore binary files
-- syntax highlighting?
-
