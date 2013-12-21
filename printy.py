@@ -18,7 +18,7 @@ from docopt import docopt
 # TODO: as params
 excludes = ['.git', '*.sublime-*', '*.md']
 # transform glob patterns to regular expressions
-excludes = r'|'.join([fnmatch.translate(x) for x in excludes]) or r'$.'
+excludes = r'|'.join([fnmatch.translate(x) for x in excludes])
 
 def printify(directory):
     """
@@ -34,8 +34,9 @@ def printify(directory):
     for root, dirs, files in os.walk(directory, topdown=True):
 
         # exclude dirs and files
-        dirs[:] = [d for d in dirs if not re.match(excludes, d)]
-        files = [f for f in files if not re.match(excludes, f)]
+        if excludes:
+            dirs[:] = [d for d in dirs if not re.match(excludes, d)]
+            files = [f for f in files if not re.match(excludes, f)]
 
         for filename in files:
             path = os.path.join(root, filename)
