@@ -11,11 +11,16 @@ Usage:
 
 """
 
-import sys, os
+import sys, os, re, fnmatch
 from textwrap import indent
 from docopt import docopt
 
-def printify(directory, excludes=['.git']):
+# TODO: as params
+excludes = ['.git', '*.sublime-*', '*.md']
+# transform glob patterns to regular expressions
+excludes = r'|'.join([fnmatch.translate(x) for x in excludes]) or r'$.'
+
+def printify(directory):
     """
     Prints contents of all files in a directory to stdout in
     simple markdown format. Every file gets a heading with its
@@ -28,9 +33,9 @@ def printify(directory, excludes=['.git']):
     # recurse the directory
     for root, dirs, files in os.walk(directory, topdown=True):
 
-        # remove excludes
-        dirs[:] = [d for d in dirs if d not in excludes]
-        files = [f for f in files if f not in excludes]
+        # exclude dirs and files
+        dirs[:] = [d for d in dirs if not re.match(excludes, d)]
+        files = [f for f in files if not re.match(excludes, f)]
 
         for filename in files:
             path = os.path.join(root, filename)
@@ -39,7 +44,8 @@ def printify(directory, excludes=['.git']):
             print('## {0}\n'.format(path))
             with open(path, 'r') as f:
                 text = f.read()
-                print(indent(text, '    ', lambda line: True)) # indent non-empty lines with 4 spaces
+                # indent non-empty lines with 4 spaces
+                print(indent(text, '    ', lambda line: True))
 
 
 if __name__ == '__main__':
