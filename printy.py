@@ -5,6 +5,7 @@ Usage:
     printy.py <directory>
     printy.py <directory> [options]
     printy.py <directory> --exclude=<folder_or_file_pattern>...
+    printy.py <directory> --paths --exclude=<folder_or_file_pattern>...
 
 Options:
     -h --help           Show this screen.
