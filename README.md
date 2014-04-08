@@ -12,10 +12,12 @@ I recommend using [Marked](http://markedapp.com/) to view/print the result.
 Requires **python3** and **docopt** to be installed,
 the file is self contained so just drop it somewhere.
 
+```bash
     pip install docopt
 
     # make it executable
     chmod +x printy.py
+```
 
 ## Usage
 
@@ -29,18 +31,20 @@ In this example I'm using a testfolder with the following structure:
 
 To use `printy.py`, simply:
 
-    # output in terminal
-    ./printy.py testfolder
+```bash
+# output in terminal
+./printy.py testfolder
 
-    # or save as a file
-    ./printy.py testfolder > test.md
+# or save as a file
+./printy.py testfolder > test.md
 
-    # print only paths (useful for testing if your ignore patterns are working)
-    ./printy.py testfolder -n
+# print only paths (useful for testing if your ignore patterns are working)
+./printy.py testfolder -n
 
-    # ignore files and folders
-    # you can use the --exclude option multiple times
-    ./printy.py --exclude="*.py"
+# ignore files and folders
+# you can use the --exclude option multiple times
+./printy.py --exclude="*.py"
+```
 
 The ouput will be (within horizontal lines):
 
