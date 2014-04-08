@@ -69,3 +69,4 @@ The ouput will be (within horizontal lines):
 ## Todo
 
 - ignore binary files
+- syntax highlighting, maybe with fenced code blocks
